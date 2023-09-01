@@ -66,12 +66,19 @@ namespace CursoEFCore.Models
         // public int IdComputed { get; set; }
 
 
-        // Creando FK para Categoria:
+
+        // Relacion 1 - Muchos
+        // Esta es la tabla Hija y Categoria Tabla Padre, Creando FK para Categoria:
         // Esto simplemente ya añade una nueva columna a la tabla Articulo la cual sera la FK CategoriaId
         public Categoria Categoria { get; set; }
 
         // Esto ya es para agregar el FK de manera explicita colocandole un nombre personalizado.
         // [ForeignKey("Categoria")]
         // public int Cateroria_Id { get; set; }
+
+
+
+        // Relacion Muchos - Muchos
+        public ICollection<ArticuloEtiqueta> ArticuloEtiqueta { get; set; }
     }
 }

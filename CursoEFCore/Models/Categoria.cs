@@ -9,5 +9,10 @@ namespace CursoEFCore.Models
 
         [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "[NULL]")]
         public string Nombre { get; set; }
+
+
+        // Relacion 1 - Muchos
+        // Esta es Tabla Padre y Articulo Tabla Hila
+        public List<Articulo> Articulo { get; set; }
     }
 }

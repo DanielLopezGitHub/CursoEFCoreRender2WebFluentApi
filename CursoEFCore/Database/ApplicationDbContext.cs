@@ -16,5 +16,17 @@ namespace CursoEFCore.Database
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<Articulo> Articulos { get; set; }
+        public DbSet<DetalleUsuario> DetalleUsuarios { get; set; }
+        public DbSet<Etiqueta> Etiquetas { get; set; }
+
+
+        // Relacion Muchos - Muchos
+        // Articulo - Etiqueta
+        // Utilizando Api Fluente:
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Definiendole una llave Primaria (HasKey) a cada campo de la Tabla Intermedia ArticuloEtiqueta
+            modelBuilder.Entity<ArticuloEtiqueta>().HasKey(ae => new {ae.Articulo_Id, ae.Etiqueta_Id});
+        }
     }
 }
