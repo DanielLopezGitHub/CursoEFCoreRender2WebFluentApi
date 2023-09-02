@@ -80,6 +80,7 @@ namespace CursoEFCore.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CrearMultipleOpcionFormulario()
         {
             // La siguiente es una de tantas formas que hay para recojer los datos del formulario
@@ -97,6 +98,60 @@ namespace CursoEFCore.Controllers
             }
 
             _dbContext.Categorias.AddRange(categorias);
+            _dbContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Editar(int? id)
+        {
+            if (id == null)
+            {
+                return View();
+            }
+
+            var categoria = _dbContext.Categorias.FirstOrDefault(c => c.Categoria_Id == id);
+            return View(categoria);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Editar(Categoria categoria)
+        {
+            if (ModelState.IsValid)
+            {
+                _dbContext.Categorias.Update(categoria);
+                _dbContext.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(categoria);
+        }
+
+        [HttpGet]
+        public IActionResult Borrar(int? id)
+        {
+            var categoria = _dbContext.Categorias.FirstOrDefault(c => c.Categoria_Id == id);
+            _dbContext.Categorias.Remove(categoria);
+            _dbContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult BorrarMultiple2()
+        {
+            // Ordena los registros de forma decendente en ID toma 2 y los mete a la variable.
+            IEnumerable<Categoria> categorias = _dbContext.Categorias.OrderByDescending(c => c.Categoria_Id).Take(2);
+            _dbContext.Categorias.RemoveRange(categorias);
+            _dbContext.SaveChanges();
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult BorrarMultiple5()
+        {
+            // Ordena los registros de forma decendente en ID toma 2 y los mete a la variable.
+            IEnumerable<Categoria> categorias = _dbContext.Categorias.OrderByDescending(c => c.Categoria_Id).Take(5);
+            _dbContext.Categorias.RemoveRange(categorias);
             _dbContext.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
