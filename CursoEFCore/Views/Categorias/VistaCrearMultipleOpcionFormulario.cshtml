@@ -1,0 +1,48 @@
+﻿@model Categoria
+@{
+    ViewData["Title"] = "Crear Nueva Categoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Crear 5 Categorias</h3>
+<br />
+<br />
+
+<form method="post" asp-action="CrearMultipleOpcionFormulario">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" for="NombreCategoria" class="form-label">Nombre de la Categoria</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="NombreCategoria">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" for="NombreCategoria" class="form-label">Nombre de la Categoria</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="NombreCategoria">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" for="NombreCategoria" class="form-label">Nombre de la Categoria</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="NombreCategoria">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" for="NombreCategoria" class="form-label">Nombre de la Categoria</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="NombreCategoria">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Nombre" for="NombreCategoria" class="form-label">Nombre de la Categoria</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="NombreCategoria">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-4">Submit</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver a Lista</a>
+
+</form>
+

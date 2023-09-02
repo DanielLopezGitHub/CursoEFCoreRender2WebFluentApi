@@ -7,7 +7,8 @@ namespace CursoEFCore.Models
         [Key]
         public int Categoria_Id { get; set; }
 
-        [DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "[NULL]")]
+        //[DisplayFormat(ConvertEmptyStringToNull = true, NullDisplayText = "[NULL]")]
+        [Required(ErrorMessage = "El campo Nombre es obligatorio")]
         public string Nombre { get; set; }
 
 
