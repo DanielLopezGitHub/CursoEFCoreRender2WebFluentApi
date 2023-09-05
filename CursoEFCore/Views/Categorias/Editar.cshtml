@@ -19,6 +19,14 @@
         <span asp-validation-for="Nombre" class="text-danger"></span>
     </div>
 
+    <div class="mb-3">
+        <label for="Inactivo" class="form-label">Inactivo</label>
+        <input asp-for="Activo" type="radio" value="false" id="Inactivo">
+        <label for="Activo" class="form-label">Activo</label>
+        <input asp-for="Activo" type="radio" value="true" id="Activo">
+        <span asp-validation-for="Activo" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary me-4">Submit</button>
     <a asp-action="Index" class="btn btn-secondary">Volver a Lista</a>
 

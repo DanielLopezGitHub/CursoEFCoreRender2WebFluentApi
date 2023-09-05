@@ -4,6 +4,7 @@ using CursoEFCore.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoEFCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230905070046_AgregadaFechaCreacionCategoria")]
+    partial class AgregadaFechaCreacionCategoria
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,9 +91,6 @@ namespace CursoEFCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Categoria_Id"), 1L, 1);
 
-                    b.Property<bool>("Activo")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("FechaCreacion")
                         .HasColumnType("datetime2");
 
@@ -102,22 +101,6 @@ namespace CursoEFCore.Migrations
                     b.HasKey("Categoria_Id");
 
                     b.ToTable("Categorias");
-
-                    b.HasData(
-                        new
-                        {
-                            Categoria_Id = 77,
-                            Activo = true,
-                            FechaCreacion = new DateTime(2023, 6, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Categoria 5"
-                        },
-                        new
-                        {
-                            Categoria_Id = 78,
-                            Activo = false,
-                            FechaCreacion = new DateTime(2023, 6, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Nombre = "Categoria 6"
-                        });
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.DetalleUsuario", b =>

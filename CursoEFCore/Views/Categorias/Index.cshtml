@@ -31,12 +31,16 @@
         <table class="table table-striped border">
             <tr>
                 <th>Nombre de Categoria</th>
+                <th>Estado</th>
+                <th>Fecha de Creacion</th>
                 <th></th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.Nombre</td>
+                    <td>@item.Activo</td>
+                    <td>@item.FechaCreacion</td>
                     <td>
                     <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Categoria_Id">Editar</a>
                     <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Categoria_Id">Borrar</a>

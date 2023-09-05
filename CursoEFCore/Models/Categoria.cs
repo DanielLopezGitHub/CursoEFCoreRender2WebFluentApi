@@ -11,6 +11,11 @@ namespace CursoEFCore.Models
         [Required(ErrorMessage = "El campo Nombre es obligatorio")]
         public string Nombre { get; set; }
 
+        [DataType(DataType.Date)]
+        public DateTime FechaCreacion { get; set; }
+
+        public bool Activo { get; set; }
+
 
         // Relacion 1 - Muchos
         // Esta es Tabla Padre y Articulo Tabla Hila
