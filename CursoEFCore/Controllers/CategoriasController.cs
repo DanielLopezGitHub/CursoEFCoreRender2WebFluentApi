@@ -16,39 +16,81 @@ namespace CursoEFCore.Controllers
         // - - - - Inyeccion de Dependencias - - - -
 
 
+
+
+        // - - - - -  - - - - - - -- - -- - - - - - - - -  Metodos Usando EF Core LINQ  - - - - - - - - - - - - - - - - - - - - - - - 
+
         [HttpGet]
         public IActionResult Index()
         {
             // 1- Consulta tipica normal inicial sin filtro
             List<Categoria> listaCategorias = _dbContext.Categorias.ToList();
 
+            return View(listaCategorias);
+        }
+        [HttpGet]
+        public IActionResult IndexWhereTime()
+        {
             // 2- Consulta Filtrando por fecha, trayendo los registros que esten por en cima de esta fecha
+
             DateTime fechaComparacion = new DateTime(2023, 02, 15);
-            //List<Categoria> listaCategorias = _dbContext.Categorias.Where(f => f.FechaCreacion >= fechaComparacion).OrderBy(f => f.FechaCreacion).ToList();
+            List<Categoria> listaCategorias = _dbContext.Categorias.Where(f => f.FechaCreacion >= fechaComparacion).OrderBy(f => f.FechaCreacion).ToList();
+            return View(listaCategorias);
+        }
+        [HttpGet]
+        public IActionResult IndexWhereName()
+        {
+            // 6- Filtrar por NOMBRE, seleccionar columnas especificas en este caso por columna "Nombre".
 
-            // 3- Agrupar por valores, en este caso los activos e inactivos (Este ejemplo devuelve otro tipo de Model que el que recibe la vista, asi que
-            // va a dar error en el cliente, se tiene que verificar el resultado aqui con debug)
-            //var listaCategorias = _dbContext.Categorias.GroupBy(c => new {c.Activo}).Select(c => new {c.Key, Count = c.Count()}).ToList();
+            var categorias = _dbContext.Categorias.Where(n => n.Nombre == "8 otro").Select(n => n).ToList();
+            return View(categorias);
+        }
+        [HttpGet]
+        public IActionResult IndexGroupByActivo()
+        {
+            // 3- Agrupar por valores, en este caso los activos e inactivos
 
+            // (Este ejemplo devuelve otro tipo de Model que el que recibe la vista, asi que va a dar error en el cliente,
+            // se tiene que verificar el resultado aqui con debug)
+            // var listaCategorias = _dbContext.Categorias.GroupBy(c => new {c.Activo}).Select(c => new {c.Key, Count = c.Count()}).ToList();
+
+            // La siguiente linea ya sirve bien y si es del tipo del que la vista recibe.
+            IEnumerable<Categoria> listaCategorias = _dbContext.Categorias.Where(c => c.Activo).ToList();
+            return View(listaCategorias);
+        }
+        [HttpGet]
+        public IActionResult IndexSkipTake()
+        {
             // 4- Take() y Skip() nos permiten filtrar una cantidad de Registros especifica, con take comamos cierta cantidad de registros y 
             // con skip saltamos un numero de registros para tomar los que siguen.
-            //List<Categoria> listaCategorias = _dbContext.Categorias.Skip(3).Take(3).ToList();
 
-            // 5- Consulta sql convencional con lenguage SQL
-            //List<Categoria> listaCategorias = _dbContext.Categorias.FromSqlRaw("select * from Categorias where nombre like '1%' and activo = 0").ToList();
-
+            List<Categoria> listaCategorias = _dbContext.Categorias.Skip(3).Take(3).ToList();
             return View(listaCategorias);
-
-            // 6- Interpolacion de Strings, proteger consultas de inyecciones SQL
-            //var id = 64;
-            //var categoria = _dbContext.Categorias.FromSqlRaw($"select * from Categorias where categoria_id = {id}").ToList();
-            //return View(categoria);
-
-
-            // 6- Filtrar por NOMBRE, seleccionar columnas especificas en este caso por columna "Nombre".
-            //var categorias = _dbContext.Categorias.Where(n => n.Nombre == "8 otro").Select(n => n).ToList();
-            //return View(categorias);
         }
+        [HttpGet]
+        public IActionResult IndexFromSqlRaw()
+        {
+            // 5- Consulta sql convencional con lenguage SQL
+
+            List<Categoria> listaCategorias = _dbContext.Categorias.FromSqlRaw("select * from Categorias where nombre like '1%' and activo = 0").ToList();
+            return View(listaCategorias);
+        }
+        [HttpGet]
+        public IActionResult IndexFromSqlRawInterpolation()
+        {
+            // 6- Interpolacion de Strings, proteger consultas de inyecciones SQL
+
+            var id = 64;
+            var categoria = _dbContext.Categorias.FromSqlRaw($"select * from Categorias where categoria_id = {id}").ToList();
+            return View(categoria);
+        }
+
+        // - - - - -  - - - - - - -- - -- - - - - - - - -  Metodos Usando EF Core LINQ  - - - - - - - - - - - - - - - - - - - - - - - 
+        
+
+        
+        
+        // - - - - -  - - - - - - -- - -- - - - - - - - -  Demas Metodos  - - - - - - - - - - - - - - - - - - - - - - - 
 
         [HttpGet]
         public IActionResult Crear()
