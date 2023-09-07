@@ -63,7 +63,7 @@ namespace CursoEFCore.Migrations
 
                     b.HasIndex("Categoria_Id");
 
-                    b.ToTable("Tbl_Articulo");
+                    b.ToTable("Tbl_Articulo", (string)null);
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.ArticuloEtiqueta", b =>
@@ -78,7 +78,7 @@ namespace CursoEFCore.Migrations
 
                     b.HasIndex("Etiqueta_Id");
 
-                    b.ToTable("ArticuloEtiqueta");
+                    b.ToTable("ArticuloEtiqueta", (string)null);
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.Categoria", b =>
@@ -101,7 +101,7 @@ namespace CursoEFCore.Migrations
 
                     b.HasKey("Categoria_Id");
 
-                    b.ToTable("Categorias");
+                    b.ToTable("Categorias", (string)null);
 
                     b.HasData(
                         new
@@ -140,7 +140,7 @@ namespace CursoEFCore.Migrations
 
                     b.HasKey("DetalleUsuario_Id");
 
-                    b.ToTable("DetalleUsuarios");
+                    b.ToTable("DetalleUsuarios", (string)null);
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.Etiqueta", b =>
@@ -159,7 +159,7 @@ namespace CursoEFCore.Migrations
 
                     b.HasKey("Etiqueta_Id");
 
-                    b.ToTable("Etiquetas");
+                    b.ToTable("Etiquetas", (string)null);
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.Usuario", b =>
@@ -187,7 +187,7 @@ namespace CursoEFCore.Migrations
                     b.HasIndex("DetalleUsuario_Id")
                         .IsUnique();
 
-                    b.ToTable("Usuarios");
+                    b.ToTable("Usuarios", (string)null);
                 });
 
             modelBuilder.Entity("CursoEFCore.Models.Articulo", b =>

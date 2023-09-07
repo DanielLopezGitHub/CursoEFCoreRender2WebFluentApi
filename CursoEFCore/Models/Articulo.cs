@@ -11,15 +11,17 @@ namespace CursoEFCore.Models
         // public int ArticuloId { get; set; }
 
         [Key] // Para indicar de manera Explicita la PK
+        [Display(Name = "Id")]
         public int Articulo_Id { get; set; }
 
         [Column("Titulo")] // Para cambiar el nombre de esta columna en la DB
+        [Display(Name = "Titulo")]
         [Required] // Para obligar que este dato sea obligatorio al enviarlo a la DB
         [MaxLength(20)] 
         public string TituloArticulo { get; set; }
 
         [Required(ErrorMessage ="La descripcion es obligatoria")] // Para obligar que este dato sea obligatorio al enviarlo a la DB
-        [Display(Name = "Direccion del Usuario")] // Para especificar un nombre a este campo en la UI no en la DB
+        [Display(Name = "Descripcion")] // Para especificar un nombre a este campo en la UI no en la DB
         [StringLength(500, ErrorMessage ="No puedes ecceder 500 caracteres")] // Para limitar el numero de caracteres string
         public string Descripcion { get; set; }
 
@@ -73,8 +75,9 @@ namespace CursoEFCore.Models
         public Categoria Categoria { get; set; }
 
         // Esto ya es para agregar el FK de manera explicita colocandole un nombre personalizado.
-        // [ForeignKey("Categoria")]
-        // public int Cateroria_Id { get; set; }
+        //[Display(Name = "Categoria")]
+        [ForeignKey("Categoria")]
+        public int? Categoria_Id { get; set; }
 
 
 

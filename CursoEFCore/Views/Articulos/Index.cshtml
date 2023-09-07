@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Articulo>
+
+@{
+    ViewData["Title"] = "Articulos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mb-3">
+    <div class="col-4"><h3>Lista de Articulos</h3></div>
+    <div class="col-3"><a asp-action="Crear" class="btn btn-primary">Crear nuevo Articulo</a></div>
+</div>
+
+<div>
+    @if (Model.Count() > 0)
+    {
+        <table class="table table-striped border">
+            <tr>
+                <th>@Html.DisplayNameFor(a => a.Articulo_Id)</th>
+                <th>@Html.DisplayNameFor(a => a.TituloArticulo)</th>
+                <th>@Html.DisplayNameFor(a => a.Descripcion)</th>
+                <th>@Html.DisplayNameFor(a => a.Fecha)</th>
+                <th>@Html.DisplayNameFor(a => a.Calificacion)</th>
+                <th>@Html.DisplayNameFor(a => a.Email)</th>
+                <th>Categoria</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Articulo_Id</td>
+                    <td>@item.TituloArticulo</td>
+                    <td>@item.Descripcion</td>
+                    <td>@item.Fecha</td>
+                    <td>@item.Calificacion</td>
+                    <td>@item.Email</td>
+                    <td>@item.Categoria.Nombre</td>
+                    <td>
+                        <a class="btn btn-primary text-white" asp-action="Editar" asp-route-id="@item.Articulo_Id">Editar</a>
+                        <a class="btn btn-danger text-white" asp-action="Borrar" asp-route-id="@item.Articulo_Id">Borrar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <p>No Hay Articulos</p>
+    }
+</div>
