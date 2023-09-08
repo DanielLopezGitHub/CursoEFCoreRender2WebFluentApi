@@ -1,0 +1,35 @@
+﻿@model Etiqueta
+
+@{
+    ViewData["Title"] = "Crear Nueva Etiqueta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewData["Title"]</h3>
+<br />
+<br />
+<form method="post" asp-action="Crear">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label asp-for="Titulo" for="Titulo" class="form-label"></label>
+        <input asp-for="Titulo" type="text" class="form-control" id="Titulo">
+        <span asp-validation-for="Titulo" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Fecha" for="Fecha" class="form-label"></label>
+        <input asp-for="Fecha" type="date" class="form-control" id="Fecha">
+        <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-4">Submit</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver a Lista</a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -18,7 +18,7 @@ namespace CursoEFCore.Controllers
 
 
 
-        // - - - - -  - - - - - - -- - -- - - - - - - - -  Metodos Usando EF Core LINQ  - - - - - - - - - - - - - - - - - - - - - - - 
+        // - - - - -  - - - - - - -- - -- - - - - - - - -  Metodos  - - - - - - - - - - - - - - - - - - - - - - - 
 
         [HttpGet]
         public IActionResult Index()
