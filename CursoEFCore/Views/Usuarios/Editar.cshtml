@@ -1,0 +1,43 @@
+﻿@model Usuario
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewData["Title"]</h3>
+<br />
+<br />
+<form method="post" asp-action="Editar">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <input type="hidden" asp-for="Id" />
+
+    <div class="mb-3">
+        <label for="Nombre" class="form-label">Nombre</label>
+        <input asp-for="Nombre" type="text" class="form-control" id="Nombre">
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label for="Email" class="form-label">Email</label>
+        <input asp-for="Email" type="email" class="form-control" id="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="Direccion" for="Direccion" class="form-label">Direccion</label>
+        <input asp-for="Direccion" type="text" class="form-control" id="Direccion">
+        <span asp-validation-for="Direccion" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary me-4">Editar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver a Lista</a>
+
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

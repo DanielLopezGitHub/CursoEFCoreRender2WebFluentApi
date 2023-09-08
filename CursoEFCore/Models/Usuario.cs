@@ -18,9 +18,9 @@ namespace CursoEFCore.Models
         public int Edad { get; set; }
 
         // Relacion 1 - 1:
-        // Esta es la Tabla Padre y DetaleUsuario la tabla Hija
+        // Esta es la Tabla Padre y DetalleUsuario la tabla Hija
         [ForeignKey("DetalleUsuario")]
-        public int DetalleUsuario_Id { get; set; }
+        public int? DetalleUsuario_Id { get; set; }
         public DetalleUsuario DetalleUsuario { get; set; }
 
     }
