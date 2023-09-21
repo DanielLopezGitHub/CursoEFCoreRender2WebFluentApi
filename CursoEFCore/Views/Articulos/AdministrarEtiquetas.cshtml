@@ -1,0 +1,64 @@
+﻿@model CursoEFCore.ViewModels.ArticuloEtiquetaVM
+
+@{
+    ViewData["Title"] = "Administrar Etiquetas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>@ViewData["Title"]</h3>
+<br />
+<br />
+
+<div class="row mb-5">
+    <form method="post" asp-action="AdministrarEtiquetas">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!-- Tenemos que enviar estos 2 IDs para crear un nuevo Registro en ArticuloEtiqueta -->
+        <input type="hidden" asp-for="Articulo.Articulo_Id" />
+        <input type="hidden" asp-for="ArticuloEtiqueta.Articulo_Id" />
+
+        <div class="mb-3">
+            <label asp-for="Articulo.TituloArticulo" for="Titulo" class="form-label"></label>
+            <input asp-for="Articulo.TituloArticulo" type="text" class="form-control" id="Titulo">
+            <span asp-validation-for="Articulo.TituloArticulo" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label for="Etiquetas" class="form-label"></label>
+            @Html.DropDownListFor(u => u.ArticuloEtiqueta.Etiqueta_Id, Model.ListaEtiquetas, "--Seleccionar Etiquetas", new {@class = "form-control"})
+        </div>
+
+        <button type="submit" class="btn btn-primary me-4">Asociar Etiquetas al Articulo</button>
+        <a asp-action="Index" class="btn btn-secondary">Volver a Lista</a>
+
+    </form>
+</div>
+
+<div class="row">
+    <form method="post" asp-action="EliminarEtiquetas">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="@Model.Articulo.Articulo_Id"/>
+
+        <div class="row text-right">
+            <div class="col-12 text-right h4 text-primary">
+                Etiquetas asociadas a este articulo
+            </div>
+        </div>
+        @foreach (var item in Model.ListaArticuloEtiquetas)
+        {
+            <div class="row pb-2">
+                <div class="col-8 text-right" style="font-size:24px;">@item.Etiqueta.Titulo</div>
+                <div class="col-4">
+                    <button asp-action="EliminarEtiquetas" type="submit" class="btn btn-danger form-control" asp-route-idEtiqueta="@item.Etiqueta_Id">Eliminar</button>
+                </div>
+            </div>
+        }
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

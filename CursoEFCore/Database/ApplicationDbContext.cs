@@ -18,6 +18,7 @@ namespace CursoEFCore.Database
         public DbSet<Articulo> Articulos { get; set; }
         public DbSet<DetalleUsuario> DetalleUsuarios { get; set; }
         public DbSet<Etiqueta> Etiquetas { get; set; }
+        public DbSet<ArticuloEtiqueta> ArticuloEtiquetas { get; set; }
 
 
         // Relacion Muchos - Muchos
