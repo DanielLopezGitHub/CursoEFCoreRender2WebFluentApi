@@ -3,32 +3,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CursoEFCore.Models
 {
-    [Table("Tbl_Articulo")] // Para especificar el nombre de la tabla en la DB
     public class Articulo
     {
         // El Mapper de EF detecta que ArticuloId es una PK por esa sintaxis, si fuera IdArticulo ahi ya no funcionaria y no marcaria
         // la prop IdArticulo como PK, es una convencion.
         // public int ArticuloId { get; set; }
 
-        [Key] // Para indicar de manera Explicita la PK
-        [Display(Name = "Id")]
         public int Articulo_Id { get; set; }
 
-        [Column("Titulo")] // Para cambiar el nombre de esta columna en la DB
-        [Display(Name = "Titulo")]
-        [Required] // Para obligar que este dato sea obligatorio al enviarlo a la DB
-        [MaxLength(20)] 
         public string TituloArticulo { get; set; }
 
-        [Required(ErrorMessage ="La descripcion es obligatoria")] // Para obligar que este dato sea obligatorio al enviarlo a la DB
-        [Display(Name = "Descripcion")] // Para especificar un nombre a este campo en la UI no en la DB
-        [StringLength(500, ErrorMessage ="No puedes ecceder 500 caracteres")] // Para limitar el numero de caracteres string
         public string Descripcion { get; set; }
 
         [Range(0.1, 5.0)] // Para establecer un rango valido que puede recibir este prop
         public double Calificacion { get; set; }
         
-        [DataType(DataType.Date)] // Para indicar que este campo es Tipo Date
         public DateTime Fecha { get; set; }
         
         [DataType(DataType.Time)] // Para indicar que este campo es Tipo Solo Tiempo y no fecha
@@ -76,7 +65,6 @@ namespace CursoEFCore.Models
 
         // Esto ya es para agregar el FK de manera explicita colocandole un nombre personalizado.
         //[Display(Name = "Categoria")]
-        [ForeignKey("Categoria")]
         public int? Categoria_Id { get; set; }
 
 
