@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoEFCore", "CursoEFCore\CursoEFCore.csproj", "{D1082D97-9494-470B-89B1-6CB1FA860AA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CursoEFCoreFluentApi", "CursoEFCore\CursoEFCoreFluentApi.csproj", "{D1082D97-9494-470B-89B1-6CB1FA860AA0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
